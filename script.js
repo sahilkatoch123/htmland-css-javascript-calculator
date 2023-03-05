@@ -1,5 +1,5 @@
 let runningTotal = 0;
-let buffer = "0";
+let buffer = 0;
 let previousoperater = null;
 
 const screen = document.querySelector('.screen');
@@ -82,7 +82,7 @@ function flushOperation(intBuffer) {
     } else if (previousoperater === '÷') {
         runningTotal /= intBuffer;
     } else if (previousoperater === '%') {
-        runningTotal %= intBuffer;
+        runningTotal = runningTotal * intBuffer/100 ;
     }
     console.log('runningTotal', runningTotal)
 
