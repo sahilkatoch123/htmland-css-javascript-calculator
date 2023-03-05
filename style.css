@@ -18,7 +18,7 @@ body{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    margin:0.5%
+    margin:0.5%;
 }
 .screen{
     text-align: right;
@@ -44,12 +44,6 @@ body{
 flex-basis: 49.7%;
 font-size: 40px;
 background-color: #d8d9db;
-
-}
-.calc-button-triple{
-    flex-basis: 74.8%;
-    font-size: 40px;
-    background-color: #d8d9db;
 
 }
 .calc-button:last-child{

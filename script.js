@@ -4,7 +4,6 @@ let previousoperater = null;
 
 const screen = document.querySelector('.screen');
 function buttonClick(value) {
-    debugger;
     if (isNaN(value)) {
         // this is not a number
         handleSymbal(value);
@@ -30,7 +29,7 @@ function handleSymbal(symbol) {
                 // need you two number to do math
                 return;
             }
-            flushOperation(parseInt(buffer));
+            flushOperation(+buffer);
             previousoperater = null;
             buffer = runningTotal;
             runningTotal = 0;
@@ -39,6 +38,8 @@ function handleSymbal(symbol) {
         case '−':
         case '×':
         case '÷':
+        case '%':
+        case '.':
             handleMath(symbol);
             break;
         case '←':
@@ -51,11 +52,16 @@ function handleSymbal(symbol) {
     }
 }
 function handleMath(symbol) {
-    if (buffer === '0') {
+    if (symbol === '.') {
+        buffer = `${buffer}${symbol}`
+        return
+    }
+    if (buffer === '0' && symbol !== '.') {
         // do nathing
         return;
     }
-    const intBuffer = parseInt(buffer);
+    const intBuffer = +buffer;
+    console.log(intBuffer, 'test');
 
     if (runningTotal === 0) {
         runningTotal = intBuffer;
@@ -75,6 +81,8 @@ function flushOperation(intBuffer) {
         runningTotal *= intBuffer;
     } else if (previousoperater === '÷') {
         runningTotal /= intBuffer;
+    } else if (previousoperater === '%') {
+        runningTotal %= intBuffer;
     }
     console.log('runningTotal', runningTotal)
 
@@ -87,6 +95,7 @@ function handleNumber(numberString) {
     }
 
 }
+
 
 function init() {
     document.querySelector('.calc-buttons')
